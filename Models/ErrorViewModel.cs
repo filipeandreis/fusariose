@@ -1,6 +1,6 @@
 using System;
 
-namespace projeto_netcore.Models
+namespace fusariose.Models
 {
     public class ErrorViewModel
     {

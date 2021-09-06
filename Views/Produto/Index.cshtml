@@ -1,0 +1,33 @@
+﻿
+@model List<ProdutoModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Index</h1>
+@Html.ActionLink("Adicionar Novo Produto","formulario","produto")
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Unidade</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.Nome</td>
+                    <td>@item.UnidadeMedida</td>
+                    <td>@item.Quantidade</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject  Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Formulario";
+}
+
+<h1>Formulario</h1>
+
+<div>
+    <form method="POST" action="/produto/cadastrar">
+        Conteudo da Sessao:  @HttpContextAccessor.HttpContext.Session.GetString("CodigoProduto")
+        <br />
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" value="@ViewBag.Produto.Nome" name="produto.Nome" />
+        @Html.ValidationMessage("produto.Nome")
+        <br />
+        <label for="unidade">Unidade</label>
+        <input type="text" id="unidade" value="@ViewBag.Produto.UnidadeMedida" name="produto.UnidadeMedida" />
+        <br />
+        <label for="quantidade">Quantidade</label>
+        <input type="text" id="quantidade" value="@ViewBag.Produto.Quantidade" name="produto.Quantidade" />
+        @Html.ValidationMessage("produto.quantidadeincorreta")
+        <br />
+        <label for="categoria">Categoria</label>
+        <select id="categoria" name="produto.CategoriaId">
+            @foreach (var item in ViewBag.ListaCategorias)
+            {
+                <option value="@item.Id">@item.Descricao</option>
+            }
+        </select>
+        <br />
+
+        <input type="submit" value="Cadastrar" />
+    </form>
+</div>
