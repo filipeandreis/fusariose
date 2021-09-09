@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Filipe\\source\\repos\\Ftec.ProjetoWeb.Aplicacao1.Mvc\\Ftec.ProjetoWeb.Aplicacao1.Mvc.csproj": {}
+    "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Filipe\\source\\repos\\Ftec.ProjetoWeb.Aplicacao1.Mvc\\Ftec.ProjetoWeb.Aplicacao1.Mvc.csproj": {
+    "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Filipe\\source\\repos\\Ftec.ProjetoWeb.Aplicacao1.Mvc\\Ftec.ProjetoWeb.Aplicacao1.Mvc.csproj",
-        "projectName": "Ftec.ProjetoWeb.Aplicacao1.Mvc",
-        "projectPath": "C:\\Users\\Filipe\\source\\repos\\Ftec.ProjetoWeb.Aplicacao1.Mvc\\Ftec.ProjetoWeb.Aplicacao1.Mvc.csproj",
+        "projectUniqueName": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose.csproj",
+        "projectName": "fusariose",
+        "projectPath": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose.csproj",
         "packagesPath": "C:\\Users\\Filipe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Filipe\\source\\repos\\Ftec.ProjetoWeb.Aplicacao1.Mvc\\obj\\",
+        "outputPath": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Filipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
