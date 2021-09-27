@@ -17,6 +17,7 @@
                 <th>Nome</th>
                 <th>Unidade</th>
                 <th>Quantidade</th>
+                <th>Ação</th>
             </tr>
         </thead>
         <tbody>
@@ -25,9 +26,27 @@
                 <tr>
                     <td>@item.Nome</td>
                     <td>@item.UnidadeMedida</td>
-                    <td>@item.Quantidade</td>
+                    <td id="quantidade@(item.Id)">@item.Quantidade</td>
+                    <td>
+                        <a onclick="DecrementarQuantidade('@item.Id')" href="#">Decrementar quantidade</a>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    function DecrementarQuantidade(id) {
+        var url = "/Produto/DecrementarQuantidade";
+        var parametro = { idProduto: id };
+        $.post(url, parametro, RetornaProcessamento);
+    }
+
+    function RetornaProcessamento(retorno) {
+        var celula = $("#quantidade" + retorno.id);
+        celula.html(retorno.quantidade);
+    }
+
+</script>

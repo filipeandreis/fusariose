@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose.csproj": {}
+    "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose\\fusariose.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose.csproj": {
+    "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose\\fusariose.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose.csproj",
+        "projectUniqueName": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose\\fusariose.csproj",
         "projectName": "fusariose",
-        "projectPath": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose.csproj",
+        "projectPath": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose\\fusariose.csproj",
         "packagesPath": "C:\\Users\\Filipe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\obj\\",
+        "outputPath": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Filipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "LocalStorage": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"

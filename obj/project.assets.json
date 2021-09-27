@@ -14,6 +14,18 @@
           "lib/netstandard1.0/Humanizer.dll": {}
         }
       },
+      "LocalStorage/2.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/LocalStorage.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/LocalStorage.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -1834,6 +1846,18 @@
         "lib/netstandard1.0/Humanizer.dll"
       ]
     },
+    "LocalStorage/2.1.0": {
+      "sha512": "2FYxEN8aQT6TxzsSsD86XLPglqEPqhdBpBzmcr9BhPgcA7gXjaVXUSaPM1FB9dI70j3XRAA4Kjpl0QaPxK1IkQ==",
+      "type": "package",
+      "path": "localstorage/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/LocalStorage.dll",
+        "localstorage.2.1.0.nupkg.sha512",
+        "localstorage.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Html.Abstractions/2.2.0": {
       "sha512": "Y4rs5aMEXY8G7wJo5S3EEt6ltqyOTr/qOeZzfn+hw/fuQj5GppGckMY5psGLETo1U9hcT5MmAhaT5xtusM1b5g==",
       "type": "package",
@@ -2859,6 +2883,7 @@
       "path": "runtime.native.system.security.cryptography.apple/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -2942,6 +2967,7 @@
       "path": "runtime.rhel.7-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.rhel.7-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -2955,6 +2981,7 @@
       "path": "runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -2982,6 +3009,7 @@
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -6221,6 +6249,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "LocalStorage >= 2.1.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
       "Newtonsoft.Json >= 13.0.1"
     ]
@@ -6231,11 +6260,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose.csproj",
+      "projectUniqueName": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose\\fusariose.csproj",
       "projectName": "fusariose",
-      "projectPath": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose.csproj",
+      "projectPath": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose\\fusariose.csproj",
       "packagesPath": "C:\\Users\\Filipe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\obj\\",
+      "outputPath": "C:\\Users\\Filipe\\Documents\\Projetos\\fusariose\\fusariose\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Filipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6264,6 +6293,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "LocalStorage": {
+            "target": "Package",
+            "version": "[2.1.0, )"
+          },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[5.0.2, )"

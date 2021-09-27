@@ -42,5 +42,36 @@ namespace fusariose.MockFactory
 
             return categorias;
         }
+
+        public static List<DataModel> GerarListaDados()
+        {
+            List<DataModel> data = new();
+
+            data.Add(new DataModel()
+            {
+                Id = Guid.NewGuid(),
+                Temperature = 25,
+                Rain = "sim",
+                Humidity = "nao"
+            });
+
+            data.Add(new DataModel()
+            {
+                Id = Guid.NewGuid(),
+                Temperature = 22,
+                Rain = "sim",
+                Humidity = "nao"
+            });
+
+            data.Add(new DataModel()
+            {
+                Id = Guid.NewGuid(),
+                Temperature = 21,
+                Rain = "nao",
+                Humidity = "nao"
+            });
+
+            return data;
+        }
     }
 }
