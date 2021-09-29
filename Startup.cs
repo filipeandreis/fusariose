@@ -53,11 +53,17 @@ namespace fusariose
         {
             if (env.IsDevelopment())
             {
+                app.Use(async (context, next) =>
+                {
+                    await next();
+                    if (context.Response.StatusCode == 404)
+                    {
+                        context.Request.Path = "/Home";
+                        await next();
+                    }
+                });
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/");
             }
 
             var supportCultures = new[] { "en-US", "pt-BR" };
