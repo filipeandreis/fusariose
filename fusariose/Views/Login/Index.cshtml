@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+@{
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                            <div class="card-body">
+                                <form onsubmit="return login(event)">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="username" value="@ViewBag.Login.Username" />
+                                        <label for="inputEmail">E-mail</label>
+                                        @Html.ValidationMessage("login.Username")
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="password" type="password" value="@ViewBag.Login.Password" />
+                                        <label for="inputPassword">Senha</label>
+                                        @Html.ValidationMessage("login.Password")
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        <button class="btn btn-primary" type="submit">Login</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<script>
+    function login(event) {
+        event.preventDefault()
+
+        const username = $('#username').val();
+        const password = $('#password').val();
+
+        if (username === 'admin' && password === 'admin') {
+            localStorage.setItem('login', "1")
+            window.location.replace('/home')
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Senha inválida',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    }
+</script>
