@@ -17,14 +17,6 @@ namespace fusariose_api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            //var data = new DataModel()
-            //{
-            //    Id = new Guid(),
-            //    Temperature = 20,
-            //    Humidity = "sim",
-            //    Rain = "nao"
-            //};
-
             List<DataModel> data = new();
 
             data = MockFactory.MockFactory.GerarListaDados();

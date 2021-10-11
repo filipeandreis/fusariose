@@ -16,13 +16,14 @@
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                             <div class="card-body">
                                 <form onsubmit="return login(event)">
+                                    @Html.ValidationMessage("login.Invalid")
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="username" value="@ViewBag.Login.Username" />
+                                        <input class="form-control" id="username" value="@ViewBag.Login.Username" name="login.Username" required />
                                         <label for="inputEmail">E-mail</label>
                                         @Html.ValidationMessage("login.Username")
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="password" type="password" value="@ViewBag.Login.Password" />
+                                        <input class="form-control" id="password" type="password" value="@ViewBag.Login.Password" name="login.Password" required />
                                         <label for="inputPassword">Senha</label>
                                         @Html.ValidationMessage("login.Password")
                                     </div>
@@ -47,7 +48,7 @@
 
         if (username === 'admin' && password === 'admin') {
             localStorage.setItem('login', "1")
-            window.location.replace('/home')
+            window.location.replace('/')
         } else {
             Swal.fire({
                 icon: 'error',

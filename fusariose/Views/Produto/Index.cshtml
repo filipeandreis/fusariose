@@ -1,4 +1,6 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
 @model List<ProdutoModel>
 
 @{
@@ -8,7 +10,7 @@
 
 
 <h1>Index</h1>
-@Html.ActionLink("Adicionar Novo Produto","formulario","produto")
+@Html.ActionLink("Adicionar Novo Produto", "formulario", "produto")
 
 <div>
     <table>
@@ -18,10 +20,11 @@
                 <th>Unidade</th>
                 <th>Quantidade</th>
                 <th>Ação</th>
+                @HttpContextAccessor.HttpContext.Session.GetString("CodigoProduto")
             </tr>
         </thead>
         <tbody>
-            @foreach(var item in Model)
+            @foreach (var item in Model)
             {
                 <tr>
                     <td>@item.Nome</td>
@@ -47,6 +50,10 @@
     function RetornaProcessamento(retorno) {
         var celula = $("#quantidade" + retorno.id);
         celula.html(retorno.quantidade);
+    }
+
+    window.onload = function () {
+        console.log(@HttpContextAccessor.HttpContext.Session.GetString("CodigoProduto"))
     }
 
 </script>

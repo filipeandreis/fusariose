@@ -16,6 +16,7 @@ namespace fusariose.Controllers
         //[CustomActionFilter]
         public IActionResult Index()
         {
+            HttpContext.Session.SetString("CodigoProduto", "123.ABCD");
             List<DataModel> data = new();
 
             string dataList = HttpContext.Session.GetString("dataList");

@@ -44,7 +44,9 @@
         const login = localStorage.getItem('login')
 
         if (login === '1') {
-            window.location.replace('/')
+            window.location.replace('/home')
+        } else {
+            window.location.replace('/login')
         }
     }
 </script>

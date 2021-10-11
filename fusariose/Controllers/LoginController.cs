@@ -10,6 +10,7 @@ namespace fusariose.Controllers
 {
     public class LoginController : Controller
     {
+        [Route("/login")]
         public IActionResult Index()
         {
             ViewBag.Login = new LoginModel();
@@ -39,7 +40,9 @@ namespace fusariose.Controllers
                 }
                 else
                 {
-                    return View("Formulario");
+                    ModelState.AddModelError("login.Invalid", "Digite a senha");
+
+                    return View();
                 }
             }
             else
