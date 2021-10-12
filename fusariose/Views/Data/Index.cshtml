@@ -4,20 +4,20 @@
 @model List<DataModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Dados";
 }
 
-<h1>Index</h1>
-@Html.ActionLink("Enviar dados", "formulario", "data")
-
-<div>
-    <table>
+<div class="container justify-content-center">
+    <br />
+    <a class="btn btn-primary" href="/send-data">Enviar dados</a>
+    <br />
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Temperatura</th>
-                <th>Muita chuva?</th>
-                <th>Muita umidade?</th>
-                <th>Ação</th>
+                <th scope="col">Mês</th>
+                <th scope="col">Temperatura</th>
+                <th scope="col">Chuva</th>
+                <th scope="col">Umidade</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +26,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
+                        <td>(Mês)</td>
                         <td>@item.Temperature</td>
                         <td>@item.Rain</td>
                         <td>@item.Humidity</td>

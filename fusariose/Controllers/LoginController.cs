@@ -13,9 +13,26 @@ namespace fusariose.Controllers
         [Route("/login")]
         public IActionResult Index()
         {
-            ViewBag.Login = new LoginModel();
+            var login = HttpContext.Session.GetString("login");
 
-            return View();
+            if (!String.IsNullOrEmpty(login) && login.Equals("1")) {
+                return Redirect("/");
+            } else
+            {
+                ViewBag.Login = new LoginModel();
+
+                ViewBag.Login.Username = "admin";
+
+                return View("Index");
+            }
+        }
+
+        [Route("/logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.SetString("login", "0");
+
+            return Redirect("/login");
         }
 
         [HttpPost]
@@ -34,15 +51,17 @@ namespace fusariose.Controllers
             {
                 if(login.Password.Equals("admin") && login.Username.Equals("admin"))
                 {
-                    HttpContext.Session.SetString("login", "true");
+                    HttpContext.Session.SetString("login", "1");
 
-                    return RedirectToRoute("/");
+                    return Redirect("/");
                 }
                 else
                 {
-                    ModelState.AddModelError("login.Invalid", "Digite a senha");
+                    ModelState.AddModelError("login.Invalid", "Crendenciais inválidas");
 
-                    return View();
+                    HttpContext.Session.SetString("login", "0");
+
+                    return this.Index();
                 }
             }
             else

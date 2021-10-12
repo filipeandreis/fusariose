@@ -10,10 +10,10 @@ using fusariose.Filtros;
 
 namespace fusariose.Controllers
 {
+    [AuthFilter]
     public class DataController : Controller
     {
         [HttpGet]
-        //[CustomActionFilter]
         public IActionResult Index()
         {
             HttpContext.Session.SetString("CodigoProduto", "123.ABCD");

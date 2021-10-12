@@ -1,4 +1,5 @@
-﻿using fusariose.Models;
+﻿using fusariose.Filtros;
+using fusariose.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace fusariose.Controllers
 {
+    [AuthFilter]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,11 +22,6 @@ namespace fusariose.Controllers
 
         [Route("/")]
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Loader()
         {
             return View();
         }

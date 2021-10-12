@@ -1,16 +1,10 @@
-﻿@using Microsoft.AspNetCore.Http;
-@inject  Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-
-@{
+﻿@{
     ViewData["Title"] = "Enviar dados";
 }
 
-<h1>Enviar dados</h1>
-
-<div class="card">
+<div class="card container">
     <div class="card-body">
         <form method="POST" action="/data/cadastrar">
-            Conteudo da Sessao:  @HttpContextAccessor.HttpContext.Session.GetString("CodigoProduto")
             <br />
             <label for="temperature">Temperatura (em graus celsius)</label>
             <input type="number" id="temperature" value="@ViewBag.Data.Temperature" name="data.Temperature" />

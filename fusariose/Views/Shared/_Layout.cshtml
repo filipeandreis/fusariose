@@ -32,7 +32,7 @@
                     <li><a class="dropdown-item" href="#!">Settings</a></li>
                     <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="#!" onclick="logout()">Logout</a></li>
+                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -42,7 +42,6 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
                         <a class="nav-link" asp-controller="home" asp-action="index">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Home
@@ -93,9 +92,10 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
 <script>
     $(document).ready(function onload() {
-        redirectLogin()
+        //redirectLogin()
     })
 
     function redirectLogin() {
@@ -112,3 +112,4 @@
         redirectLogin()
     }
 </script>
+*/
