@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model List<UserModel>
+
+@{
+    ViewData["Title"] = "Dados";
+}
+
+<div class="container justify-content-center">
+    <br />
+    <a class="btn btn-primary" href="/admin/new-user">Adicionar usuário</a>
+    <br />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Usuário</th>
+                <th scope="col">Senha</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count > 0)
+            {
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>@item.Username</td>
+                <td>**************</td>
+            </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

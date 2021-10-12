@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Enviar dados";
+}
+
+<div class="card container">
+    <div class="card-body">
+        <form method="POST" action="/user/cadastrar">
+            <br />
+            <label for="username">Usuário</label>
+            <input id="username" value="@ViewBag.User.Username" name="user.Username" required onblur="search(event.target.value)" />
+            @Html.ValidationMessage("user.Username")
+            <br />
+            <label for="password">Senha</label>
+            <input type="password" id="password" value="@ViewBag.User.Password" name="user.Password" required />
+            @Html.ValidationMessage("User.Password")
+            <br />
+            <input id="submit" type="submit" value="Cadastrar" />
+            <span id="err">Usuário já existe!</span>
+        </form>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#err').hide()
+    })
+
+    function search(value) {
+        const url = "/user/search";
+
+        const param = { user: value }
+
+        $.post(url, param, response)
+    }
+
+    function response(res) {
+        if (res) {
+            $('#submit').prop('disabled', true)
+            $('#err').show()
+        } else {
+            $('#submit').prop('disabled', false)
+            $('#err').hide()
+        }
+    }
+</script>

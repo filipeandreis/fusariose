@@ -1,6 +1,7 @@
 ﻿using fusariose.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +50,7 @@ namespace fusariose.Controllers
 
             if (ModelState.IsValid)
             {
-                if(login.Password.Equals("admin") && login.Username.Equals("admin"))
+                if(CheckAuth(login.Username, login.Password))
                 {
                     HttpContext.Session.SetString("login", "1");
 
@@ -61,12 +62,50 @@ namespace fusariose.Controllers
 
                     HttpContext.Session.SetString("login", "0");
 
-                    return this.Index();
+                    return Index();
                 }
             }
             else
             {
                 return View("Formulario");
+            }
+        }
+        private bool CheckAuth(string user, string password)
+        {
+            string users = HttpContext.Session.GetString("users");
+
+            if (String.IsNullOrEmpty(users))
+            {
+                if (user.Equals("admin") && password.Equals("admin"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                List<UserModel> usersList = JsonConvert.DeserializeObject<List<UserModel>>(users);
+
+                if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(password))
+                {
+                    return false;
+                }
+                else
+                {
+                    var auth = usersList.Where(p => p.Username.Equals(user)).FirstOrDefault();
+
+                    if (!String.IsNullOrEmpty(auth.ToString()) && auth.Password.Equals(password))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
         }
     }

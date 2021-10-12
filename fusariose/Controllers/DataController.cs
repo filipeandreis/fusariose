@@ -16,7 +16,6 @@ namespace fusariose.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            HttpContext.Session.SetString("CodigoProduto", "123.ABCD");
             List<DataModel> data = new();
 
             string dataList = HttpContext.Session.GetString("dataList");
@@ -38,8 +37,6 @@ namespace fusariose.Controllers
         public IActionResult Formulario()
         {
             ViewBag.Data = new DataModel();
-
-            HttpContext.Session.SetString("CodigoProduto", "123.ABCD");
 
             return View();
         }
