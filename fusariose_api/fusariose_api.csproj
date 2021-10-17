@@ -9,4 +9,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\fusariose.Repository\fusariose.Repository.csproj" />
+    <ProjectReference Include="..\fusariose\fusariose.csproj" />
+  </ItemGroup>
+
 </Project>
