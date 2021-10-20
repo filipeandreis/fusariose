@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\fusariose.Application\fusariose.Application.csproj" />
     <ProjectReference Include="..\fusariose.Repository\fusariose.Repository.csproj" />
     <ProjectReference Include="..\fusariose\fusariose.csproj" />
   </ItemGroup>
