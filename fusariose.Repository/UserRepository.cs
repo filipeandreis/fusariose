@@ -25,6 +25,11 @@ namespace fusariose.Repository
             throw new NotImplementedException();
         }
 
+        public User Get(Guid username)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<User> GetAll()
         {
             throw new NotImplementedException();

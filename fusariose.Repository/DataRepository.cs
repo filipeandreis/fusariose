@@ -25,6 +25,11 @@ namespace fusariose.Repository
             throw new NotImplementedException();
         }
 
+        public Data Get(Guid idData)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Data> GetAll()
         {
             throw new NotImplementedException();
