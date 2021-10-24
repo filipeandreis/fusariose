@@ -10,6 +10,9 @@ namespace fusariose.Models
         public int Temperature { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Rain { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
         public string Humidity { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
+        public string Month { get; set; }
     }
 }

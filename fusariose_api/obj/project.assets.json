@@ -1962,6 +1962,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "Npgsql": "5.0.10",
           "fusariose.Domain": "1.0.0"
         },
         "compile": {
