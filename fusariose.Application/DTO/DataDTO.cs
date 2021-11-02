@@ -12,10 +12,6 @@ namespace fusariose.Application.DTO
         public int Temperature { get; set; }
         public string Rain { get; set; }
         public string Humidity { get; set; }
-
-        public static implicit operator List<object>(DataDTO v)
-        {
-            throw new NotImplementedException();
-        }
+        public string Month { get; set; }
     }
 }

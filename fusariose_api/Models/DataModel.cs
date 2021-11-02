@@ -11,10 +11,5 @@ namespace fusariose_api.Models
         public string Rain { get; set; }
         public string Humidity { get; set; }
         public string Month { get; set; }
-
-        public static implicit operator DataModel(List<DataModel> v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

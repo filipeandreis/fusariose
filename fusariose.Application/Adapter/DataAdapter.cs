@@ -14,10 +14,11 @@ namespace fusariose.Application.Adapter
         {
             return new DataDTO()
             {
-                Id = new Guid(),
-                Temperature = 24,
-                Rain = "não",
-                Humidity = "não"
+                Id = data.Id,
+                Temperature = data.Temperature,
+                Rain = data.Rain,
+                Humidity = data.Humidity,
+                Month = data.Month
             };
         }
 
@@ -28,7 +29,8 @@ namespace fusariose.Application.Adapter
                 Id = data.Id,
                 Temperature = data.Temperature,
                 Rain = data.Rain,
-                Humidity = data.Humidity
+                Humidity = data.Humidity,
+                Month = data.Month
             };
         }
     }

@@ -8,7 +8,13 @@ namespace fusariose.Repository
 {
     public class DataRepository : IDataRepository
     {
-        private readonly string strConexao = "Server=fanny.db.elephantsql.com;Port=5432;Database=cgaxvztm;User Id=cgaxvztm; Password=ottALDdPtW1HxrMlfH2q1rwzNgMnNAMd;";
+        private readonly string strConexao;
+
+        public DataRepository(string strConexao)
+        {
+            this.strConexao = strConexao;
+        }
+
         public void Add(Data Data)
         {
             using NpgsqlConnection conn = new(strConexao);
@@ -33,17 +39,40 @@ namespace fusariose.Repository
 
         public void Change(Data Data)
         {
-            throw new NotImplementedException();
+            using NpgsqlConnection conn = new(strConexao);
+
+            conn.Open();
+
+            NpgsqlCommand query = new()
+            {
+                Connection = conn,
+
+                CommandText = "UPDATE data SET temperature = @temperature, rain = @rain, humidity = @humidity, month = @month WHERE id = @id;"
+            };
+
+            query.Parameters.AddWithValue("id", Data.Id);
+            query.Parameters.AddWithValue("temperature", Data.Temperature);
+            query.Parameters.AddWithValue("rain", Data.Rain);
+            query.Parameters.AddWithValue("humidity", Data.Humidity);
+            query.Parameters.AddWithValue("month", Data.Month);
+
+            query.ExecuteNonQuery();
         }
 
         public void Delete(Guid idData)
         {
-            throw new NotImplementedException();
+            using NpgsqlConnection conn = new(strConexao);
+            conn.Open();
+            NpgsqlCommand comando = new();
+            comando.Connection = conn;
+            comando.CommandText = "DELETE FROM data WHERE id=@id";
+            comando.Parameters.AddWithValue("id", idData);
+            comando.ExecuteNonQuery();
         }
 
         public List<Data> GetAll()
         {
-            List<Data> listData = new List<Data>();
+            List<Data> listData = new();
 
             using (NpgsqlConnection conn = new(strConexao))
             {
@@ -76,7 +105,34 @@ namespace fusariose.Repository
 
         public Data Get(Guid idData)
         {
-            throw new NotImplementedException();
+            Data data = null;
+
+            using (NpgsqlConnection con = new NpgsqlConnection())
+            {
+                con.Open();
+                NpgsqlCommand comando = new()
+                {
+                    Connection = con,
+
+                    CommandText = "SELECT * FROM data where id=@id"
+                };
+                comando.Parameters.AddWithValue("id", idData);
+
+                NpgsqlDataReader reader = comando.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    data = new Data()
+                    {
+                        Id = Guid.Parse(reader["id"].ToString()),
+                        Temperature = Int32.Parse(reader["temperature"].ToString()),
+                        Rain = reader["rain"].ToString(),
+                        Humidity = reader["humidity"].ToString(),
+                        Month = reader["month"].ToString()
+                    };
+                }
+            }
+            return data;
         }
     }
 }

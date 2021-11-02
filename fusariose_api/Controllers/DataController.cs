@@ -1,15 +1,12 @@
 ﻿using fusariose_api.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using fusariose.Domain.Repository;
 using fusariose.Application;
 using fusariose.Repository;
 using fusariose.Application.DTO;
+using Microsoft.Extensions.Configuration;
 
 namespace fusariose_api.Controllers
 {
@@ -20,9 +17,16 @@ namespace fusariose_api.Controllers
         private IDataRepository dataRepository;
         private DataApplication dataApplication;
 
-        public DataController()
+        public DataController(IConfiguration configuration)
         {
-            dataRepository = new DataRepository();
+            string strConexao = configuration.GetConnectionString("dbconnection");
+
+            if (String.IsNullOrEmpty(strConexao))
+            {
+                strConexao = "Server=fanny.db.elephantsql.com;Port=5432;Database=cgaxvztm;User Id=cgaxvztm; Password=ottALDdPtW1HxrMlfH2q1rwzNgMnNAMd;";
+            }
+
+            dataRepository = new DataRepository(strConexao);
             dataApplication = new DataApplication(dataRepository);
         }
 
@@ -40,7 +44,8 @@ namespace fusariose_api.Controllers
                     Id = dataDTO.Id,
                     Temperature = dataDTO.Temperature,
                     Rain = dataDTO.Rain,
-                    Humidity = dataDTO.Humidity
+                    Humidity = dataDTO.Humidity,
+                    Month = dataDTO.Month
                 });
             }
 
@@ -52,10 +57,10 @@ namespace fusariose_api.Controllers
         {
             DataDTO dataDTO = new()
             {
-                Id = data.Id,
                 Temperature = data.Temperature,
                 Rain = data.Rain,
-                Humidity = data.Humidity
+                Humidity = data.Humidity,
+                Month = data.Month
             };
 
             Guid id = dataApplication.Add(dataDTO);
@@ -71,7 +76,8 @@ namespace fusariose_api.Controllers
                 Id = data.Id,
                 Temperature = data.Temperature,
                 Rain = data.Rain,
-                Humidity = data.Humidity
+                Humidity = data.Humidity,
+                Month = data.Month
             };
 
             dataApplication.Change(dataDTO);
@@ -82,9 +88,16 @@ namespace fusariose_api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            dataApplication.Delete(id);
+            try
+            {
+                dataApplication.Delete(id);
 
-            return Ok(id);
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }
