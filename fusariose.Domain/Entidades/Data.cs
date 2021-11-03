@@ -10,17 +10,17 @@ namespace fusariose.Domain.Entidades
     {
         public Guid Id { get; set; }
         public int Temperature { get; set; }
-        public string Rain { get; set; }
-        public string Humidity { get; set; }
-        public string Month { get; set; }
+        public bool Rain { get; set; }
+        public bool Humidity { get; set; }
+        public DateTime Date { get; set; }
 
         public Data()
         {
             Id = new Guid();
             Temperature = 24;
-            Rain = "não";
-            Humidity = "não";
-            Month = "Janeiro";
+            Rain = false;
+            Humidity = false;
+            Date = new DateTime();
         }
     }
 }

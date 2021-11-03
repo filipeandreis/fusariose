@@ -16,27 +16,27 @@ namespace fusariose.MockFactory
             {
                 Id = Guid.NewGuid(),
                 Temperature = 25,
-                Rain = "sim",
-                Humidity = "nao",
-                Month = "Janeiro"
+                Rain = false,
+                Humidity = false,
+                Date = new DateTime()
             });
 
             data.Add(new DataModel()
             {
                 Id = Guid.NewGuid(),
                 Temperature = 22,
-                Rain = "sim",
-                Humidity = "nao",
-                Month = "Fevereiro"
+                Rain = false,
+                Humidity = false,
+                Date = new DateTime()
             });
 
             data.Add(new DataModel()
             {
                 Id = Guid.NewGuid(),
                 Temperature = 21,
-                Rain = "nao",
-                Humidity = "nao",
-                Month = "Março"
+                Rain = true,
+                Humidity = false,
+                Date = new DateTime()
             });
 
             return data;

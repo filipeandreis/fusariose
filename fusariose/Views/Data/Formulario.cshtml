@@ -13,16 +13,16 @@
             <label for="rain">Está chovendo muito?</label>
             <select id="rain" class="custom-select" name="data.Rain" value="@ViewBag.Data.Rain" required>
                 <option value="" selected>Escolha uma opção</option>
-                <option value="sim">Sim</option>
-                <option value="nao">Não</option>
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
             </select>
             <br />
             @Html.ValidationMessage("data.Rain")
             <label for="humidity">A umidade está muito alta?</label>
             <select id="humidity" class="custom-select" name="data.Humidity" value="@ViewBag.Data.Humidity" required>
                 <option value="" selected>Escolha uma opção</option>
-                <option value="sim">Sim</option>
-                <option value="nao">Não</option>
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
             </select>
             @Html.ValidationMessage("data.Humidity")
             <br />

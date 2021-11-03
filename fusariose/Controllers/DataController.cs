@@ -57,15 +57,6 @@ namespace fusariose.Controllers
         [HttpPost]
         public IActionResult Cadastrar(DataModel data)
         {
-            if (data.Humidity == "")
-            {
-                ModelState.AddModelError("data.Humidity", "Selecione uma opção");
-            }
-            if (data.Rain == "")
-            {
-                ModelState.AddModelError("data.Rain", "Selecione uma opção");
-            }
-
             if (ModelState.IsValid)
             {
                 string dataList = HttpContext.Session.GetString("dataList");

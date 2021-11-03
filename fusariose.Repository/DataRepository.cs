@@ -25,14 +25,14 @@ namespace fusariose.Repository
             {
                 Connection = conn,
 
-                CommandText = "INSERT INTO public.data (id, temperature, rain, humidity, month) VALUES (@id, @tempterature, @rain, @humidity, @month);"
+                CommandText = "INSERT INTO public.data (id, temperature, rain, humidity, date) VALUES (@id, @tempterature, @rain, @humidity, @date);"
             };
 
             query.Parameters.AddWithValue("id", Data.Id);
             query.Parameters.AddWithValue("tempterature", Data.Temperature);
             query.Parameters.AddWithValue("rain", Data.Rain);
             query.Parameters.AddWithValue("humidity", Data.Humidity);
-            query.Parameters.AddWithValue("month", Data.Month);
+            query.Parameters.AddWithValue("date", Data.Date);
 
             query.ExecuteNonQuery();
         }
@@ -47,14 +47,14 @@ namespace fusariose.Repository
             {
                 Connection = conn,
 
-                CommandText = "UPDATE data SET temperature = @temperature, rain = @rain, humidity = @humidity, month = @month WHERE id = @id;"
+                CommandText = "UPDATE data SET temperature = @temperature, rain = @rain, humidity = @humidity, date = @date WHERE id = @id;"
             };
 
             query.Parameters.AddWithValue("id", Data.Id);
             query.Parameters.AddWithValue("temperature", Data.Temperature);
             query.Parameters.AddWithValue("rain", Data.Rain);
             query.Parameters.AddWithValue("humidity", Data.Humidity);
-            query.Parameters.AddWithValue("month", Data.Month);
+            query.Parameters.AddWithValue("date", Data.Date);
 
             query.ExecuteNonQuery();
         }
@@ -82,7 +82,7 @@ namespace fusariose.Repository
                 {
                     Connection = conn,
 
-                    CommandText = "SELECT * FROM public.Data;"
+                    CommandText = "SELECT * FROM data;"
                 };
 
                 NpgsqlDataReader reader = query.ExecuteReader();
@@ -94,10 +94,10 @@ namespace fusariose.Repository
                         {
                             Id = Guid.Parse(reader["id"].ToString()),
                             Temperature = Int32.Parse(reader["temperature"].ToString()),
-                            Rain = reader["rain"].ToString(),
-                            Humidity = reader["humidity"].ToString(),
-                            Month = reader["month"].ToString()
-                        });
+                            Rain = Convert.ToBoolean(reader["rain"].ToString()),
+                            Humidity = Convert.ToBoolean(reader["humidity"].ToString()),
+                            Date = Convert.ToDateTime(reader["date"].ToString())
+                        }); ;
                 }
             }
             return listData;
@@ -126,9 +126,9 @@ namespace fusariose.Repository
                     {
                         Id = Guid.Parse(reader["id"].ToString()),
                         Temperature = Int32.Parse(reader["temperature"].ToString()),
-                        Rain = reader["rain"].ToString(),
-                        Humidity = reader["humidity"].ToString(),
-                        Month = reader["month"].ToString()
+                        Rain = Convert.ToBoolean(reader["rain"].ToString()),
+                        Humidity = Convert.ToBoolean(reader["humidity"].ToString()),
+                        Date = Convert.ToDateTime(reader["date"].ToString())
                     };
                 }
             }

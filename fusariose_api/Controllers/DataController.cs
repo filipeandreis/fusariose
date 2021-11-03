@@ -45,7 +45,7 @@ namespace fusariose_api.Controllers
                     Temperature = dataDTO.Temperature,
                     Rain = dataDTO.Rain,
                     Humidity = dataDTO.Humidity,
-                    Month = dataDTO.Month
+                    Date = dataDTO.Date
                 });
             }
 
@@ -60,7 +60,7 @@ namespace fusariose_api.Controllers
                 Temperature = data.Temperature,
                 Rain = data.Rain,
                 Humidity = data.Humidity,
-                Month = data.Month
+                Date = data.Date
             };
 
             Guid id = dataApplication.Add(dataDTO);
@@ -77,7 +77,7 @@ namespace fusariose_api.Controllers
                 Temperature = data.Temperature,
                 Rain = data.Rain,
                 Humidity = data.Humidity,
-                Month = data.Month
+                Date = data.Date
             };
 
             dataApplication.Change(dataDTO);

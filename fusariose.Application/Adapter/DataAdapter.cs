@@ -18,7 +18,7 @@ namespace fusariose.Application.Adapter
                 Temperature = data.Temperature,
                 Rain = data.Rain,
                 Humidity = data.Humidity,
-                Month = data.Month
+                Date = data.Date
             };
         }
 
@@ -30,7 +30,7 @@ namespace fusariose.Application.Adapter
                 Temperature = data.Temperature,
                 Rain = data.Rain,
                 Humidity = data.Humidity,
-                Month = data.Month
+                Date = data.Date
             };
         }
     }
