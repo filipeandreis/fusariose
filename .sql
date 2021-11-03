@@ -2,9 +2,9 @@
 
 CREATE TABLE data
   (
-     id          VARCHAR NOT NULL CONSTRAINT data_pk PRIMARY KEY,
-     temperature INTEGER NOT NULL,
-     rain        VARCHAR(10) NOT NULL,
-     humidity    VARCHAR(10) NOT NULL,
-     month       VARCHAR(15) NOT NULL
-  ); 
+    id          VARCHAR NOT NULL CONSTRAINT data_pk PRIMARY KEY,
+    temperature INTEGER NOT NULL,
+    rain        BOOLEAN DEFAULT false NOT NULL,
+    humidity    BOOLEAN DEFAULT false NOT NULL,
+                date TIMESTAMP DEFAULT Now() NOT NULL
+  );ALTER TABLE data owner TO cgaxvztm;
