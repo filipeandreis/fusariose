@@ -8,8 +8,8 @@ namespace fusariose_api.Models
     {
         public Guid Id { get; set; }
         public int Temperature { get; set; }
-        public bool Rain { get; set; }
-        public bool Humidity { get; set; }
+        public int Rain { get; set; }
+        public int Humidity { get; set; }
         public DateTime Date { get; set; }
     }
 }

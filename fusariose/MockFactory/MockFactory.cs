@@ -16,8 +16,8 @@ namespace fusariose.MockFactory
             {
                 Id = Guid.NewGuid(),
                 Temperature = 25,
-                Rain = false,
-                Humidity = false,
+                Rain = 0,
+                Humidity = 0,
                 Date = new DateTime()
             });
 
@@ -25,8 +25,8 @@ namespace fusariose.MockFactory
             {
                 Id = Guid.NewGuid(),
                 Temperature = 22,
-                Rain = false,
-                Humidity = false,
+                Rain = 4,
+                Humidity = 20,
                 Date = new DateTime()
             });
 
@@ -34,8 +34,8 @@ namespace fusariose.MockFactory
             {
                 Id = Guid.NewGuid(),
                 Temperature = 21,
-                Rain = true,
-                Humidity = false,
+                Rain = 50,
+                Humidity = 10,
                 Date = new DateTime()
             });
 

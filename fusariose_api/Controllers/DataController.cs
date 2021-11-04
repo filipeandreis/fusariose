@@ -14,17 +14,12 @@ namespace fusariose_api.Controllers
     [ApiController]
     public class DataController : ControllerBase
     {
-        private IDataRepository dataRepository;
-        private DataApplication dataApplication;
+        private readonly IDataRepository dataRepository;
+        private readonly DataApplication dataApplication;
 
         public DataController(IConfiguration configuration)
         {
             string strConexao = configuration.GetConnectionString("dbconnection");
-
-            if (String.IsNullOrEmpty(strConexao))
-            {
-                strConexao = "Server=fanny.db.elephantsql.com;Port=5432;Database=cgaxvztm;User Id=cgaxvztm; Password=ottALDdPtW1HxrMlfH2q1rwzNgMnNAMd;";
-            }
 
             dataRepository = new DataRepository(strConexao);
             dataApplication = new DataApplication(dataRepository);
@@ -57,6 +52,7 @@ namespace fusariose_api.Controllers
         {
             DataDTO dataDTO = new()
             {
+                Id = Guid.NewGuid(),
                 Temperature = data.Temperature,
                 Rain = data.Rain,
                 Humidity = data.Humidity,

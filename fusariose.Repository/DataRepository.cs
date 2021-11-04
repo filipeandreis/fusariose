@@ -94,8 +94,8 @@ namespace fusariose.Repository
                         {
                             Id = Guid.Parse(reader["id"].ToString()),
                             Temperature = Int32.Parse(reader["temperature"].ToString()),
-                            Rain = Convert.ToBoolean(reader["rain"].ToString()),
-                            Humidity = Convert.ToBoolean(reader["humidity"].ToString()),
+                            Rain = Int32.Parse(reader["rain"].ToString()),
+                            Humidity = Int32.Parse(reader["humidity"].ToString()),
                             Date = Convert.ToDateTime(reader["date"].ToString())
                         }); ;
                 }
@@ -126,8 +126,8 @@ namespace fusariose.Repository
                     {
                         Id = Guid.Parse(reader["id"].ToString()),
                         Temperature = Int32.Parse(reader["temperature"].ToString()),
-                        Rain = Convert.ToBoolean(reader["rain"].ToString()),
-                        Humidity = Convert.ToBoolean(reader["humidity"].ToString()),
+                        Rain = Int32.Parse(reader["rain"].ToString()),
+                        Humidity = Int32.Parse(reader["humidity"].ToString()),
                         Date = Convert.ToDateTime(reader["date"].ToString())
                     };
                 }

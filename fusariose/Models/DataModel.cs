@@ -9,9 +9,9 @@ namespace fusariose.Models
         [Required(ErrorMessage ="Campo obrigatório")]
         public int Temperature { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
-        public bool Rain { get; set; }
+        public int Rain { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
-        public bool Humidity { get; set; }
+        public int Humidity { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
         public DateTime Date { get; set; }
     }
