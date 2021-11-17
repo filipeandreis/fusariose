@@ -11,6 +11,8 @@ namespace fusariose.Domain.Repository
     {
         public List<Data> GetAll();
         public Data Get(Guid idData);
+        public List<Data> GetAllUnanalyzed();
+        public void ConvertData();
         public void Add(Data data);
         public void Change(Data data);
         public void Delete(Guid idData);

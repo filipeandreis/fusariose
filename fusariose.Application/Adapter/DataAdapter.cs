@@ -18,7 +18,8 @@ namespace fusariose.Application.Adapter
                 Temperature = data.Temperature,
                 Rain = data.Rain,
                 Humidity = data.Humidity,
-                Date = data.Date
+                Date = data.Date,
+                Risk = data.Risk
             };
         }
 
@@ -30,7 +31,8 @@ namespace fusariose.Application.Adapter
                 Temperature = data.Temperature,
                 Rain = data.Rain,
                 Humidity = data.Humidity,
-                Date = data.Date
+                Date = data.Date,
+                Risk = data.Risk
             };
         }
     }

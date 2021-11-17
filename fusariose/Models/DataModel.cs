@@ -14,5 +14,6 @@ namespace fusariose.Models
         public int Humidity { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
         public DateTime Date { get; set; }
+        public string Risk { get; set; }
     }
 }

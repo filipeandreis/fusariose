@@ -39,6 +39,27 @@ namespace fusariose.Application
             return dataDTO;
         }
 
+        public List<DataDTO> GetAllUnanalyzed()
+        {
+            List<Data> data = dataRepository.GetAllUnanalyzed();
+
+            List<DataDTO> dataDTO = new();
+
+            foreach (var elem in data)
+            {
+                dataDTO.Add(DataAdapter.ToDataDTO(elem));
+            }
+
+            return dataDTO;
+        }
+
+        public void ConvertData()
+        {
+            dataRepository.ConvertData();
+
+            return;
+        }
+
         public Guid Add(DataDTO dataDTO)
         {
             Data data = DataAdapter.ToDataDomain(dataDTO);

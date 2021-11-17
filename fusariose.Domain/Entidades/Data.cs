@@ -13,6 +13,7 @@ namespace fusariose.Domain.Entidades
         public int Rain { get; set; }
         public int Humidity { get; set; }
         public DateTime Date { get; set; }
+        public string Risk { get; set; }
 
         public Data()
         {
@@ -21,6 +22,7 @@ namespace fusariose.Domain.Entidades
             Rain = 0;
             Humidity = 15;
             Date = new DateTime();
+            Risk = "null";
         }
     }
 }

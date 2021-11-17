@@ -25,7 +25,7 @@ namespace fusariose.Repository
             {
                 Connection = conn,
 
-                CommandText = "INSERT INTO public.data (id, temperature, rain, humidity, date) VALUES (@id, @tempterature, @rain, @humidity, @date);"
+                CommandText = "INSERT INTO data (id, temperature, rain, humidity, date, risk) VALUES (@id, @tempterature, @rain, @humidity, @date, @risk);"
             };
 
             query.Parameters.AddWithValue("id", Data.Id);
@@ -33,6 +33,7 @@ namespace fusariose.Repository
             query.Parameters.AddWithValue("rain", Data.Rain);
             query.Parameters.AddWithValue("humidity", Data.Humidity);
             query.Parameters.AddWithValue("date", Data.Date);
+            query.Parameters.AddWithValue("risk", Data.Risk);
 
             query.ExecuteNonQuery();
         }
@@ -47,14 +48,15 @@ namespace fusariose.Repository
             {
                 Connection = conn,
 
-                CommandText = "UPDATE data SET temperature = @temperature, rain = @rain, humidity = @humidity, date = @date WHERE id = @id;"
+                CommandText = "UPDATE data SET temperature = @temperature, rain = @rain, humidity = @humidity, date = @date, risk = @risk WHERE id = @id;"
             };
 
-            query.Parameters.AddWithValue("id", Data.Id);
+            query.Parameters.AddWithValue("id", Data.Id.ToString());
             query.Parameters.AddWithValue("temperature", Data.Temperature);
             query.Parameters.AddWithValue("rain", Data.Rain);
             query.Parameters.AddWithValue("humidity", Data.Humidity);
             query.Parameters.AddWithValue("date", Data.Date);
+            query.Parameters.AddWithValue("risk", Convert.ToBoolean(Data.Risk));
 
             query.ExecuteNonQuery();
         }
@@ -96,11 +98,64 @@ namespace fusariose.Repository
                             Temperature = Int32.Parse(reader["temperature"].ToString()),
                             Rain = Int32.Parse(reader["rain"].ToString()),
                             Humidity = Int32.Parse(reader["humidity"].ToString()),
-                            Date = Convert.ToDateTime(reader["date"].ToString())
+                            Date = Convert.ToDateTime(reader["date"].ToString()),
+                            Risk = reader["risk"].ToString()
                         }); ;
                 }
             }
             return listData;
+        }
+
+        public List<Data> GetAllUnanalyzed()
+        {
+            List<Data> listDataUnanalyzed = new();
+
+            using (NpgsqlConnection conn = new(strConexao))
+            {
+                conn.Open();
+
+                NpgsqlCommand query = new()
+                {
+                    Connection = conn,
+
+                    CommandText = "SELECT * FROM data WHERE RISK IS NULL;"
+                };
+
+                NpgsqlDataReader reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listDataUnanalyzed.Add(
+                        new Data()
+                        {
+                            Id = Guid.Parse(reader["id"].ToString()),
+                            Temperature = Int32.Parse(reader["temperature"].ToString()),
+                            Rain = Int32.Parse(reader["rain"].ToString()),
+                            Humidity = Int32.Parse(reader["humidity"].ToString()),
+                            Date = Convert.ToDateTime(reader["date"].ToString()),
+                            Risk = reader["risk"].ToString()
+                        }); ;
+                }
+            }
+            return listDataUnanalyzed;
+        }
+
+        public void ConvertData()
+        {
+            using NpgsqlConnection conn = new(strConexao);
+
+            conn.Open();
+
+            NpgsqlCommand query = new()
+            {
+                Connection = conn,
+
+                CommandText = "UPDATE data SET temperature = temperature - 273.15 where temperature >= 273.15;"
+            };
+
+            query.ExecuteNonQuery();
+
+            return;
         }
 
         public Data Get(Guid idData)
@@ -128,7 +183,8 @@ namespace fusariose.Repository
                         Temperature = Int32.Parse(reader["temperature"].ToString()),
                         Rain = Int32.Parse(reader["rain"].ToString()),
                         Humidity = Int32.Parse(reader["humidity"].ToString()),
-                        Date = Convert.ToDateTime(reader["date"].ToString())
+                        Date = Convert.ToDateTime(reader["date"].ToString()),
+                        Risk = reader["risk"].ToString()
                     };
                 }
             }
