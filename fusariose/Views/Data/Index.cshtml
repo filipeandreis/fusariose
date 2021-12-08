@@ -1,21 +1,20 @@
-﻿@using Microsoft.AspNetCore.Http;
-@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-
-@model List<DataModel>
-
-@{
+﻿@{
     ViewData["Title"] = "Dados";
 }
 
+@model List<DataModel>
+
 <div class="container justify-content-center">
     <br />
-    <a class="btn btn-primary" href="/send-data">Enviar dados</a>
+    <button id="btnupdate" class="btn btn-primary" onclick="analyzeData()">Realizar análise de dados </button> <span hidden id="message">Análise em andamento! Já é seguro fechar a página</span>
+    <br />
+    <br />
     <br />
     <table class="table table-striped">
         <thead>
+            <tr>Momentos com risco da praga</tr>
             <tr>
-                <th scope="col">Mês</th>
-                <th scope="col">Temperatura</th>
+                <th scope="col">Data</th>
                 <th scope="col">Chuva</th>
                 <th scope="col">Umidade</th>
             </tr>
@@ -26,8 +25,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>(Mês)</td>
-                        <td>@item.Temperature</td>
+                        <td>@item.Date.ToString("dd/MM/yyyy")</td>
                         <td>@item.Rain</td>
                         <td>@item.Humidity</td>
                     </tr>
@@ -36,3 +34,17 @@
         </tbody>
     </table>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#err').hide()
+    })
+
+    function analyzeData() {
+        $("#btnupdate").attr("disabled", "disabled");
+        $('#message').removeAttr('hidden');
+
+        const url = "http://localhost:64339/api/data/analyze";
+
+        $.get(url)
+    }
+</script>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using fusariose.Filtros;
+using fusariose.ClientHttp;
 
 namespace fusariose.Controllers
 {
@@ -16,20 +17,12 @@ namespace fusariose.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            List<DataModel> data = new();
+            APIHttpClient clienteHTTP = new();
 
-            string dataList = HttpContext.Session.GetString("dataList");
-            if (string.IsNullOrEmpty(dataList))
-            {
-                data = MockFactory.MockFactory.GerarListaDados();
-            }
-            else
-            {
-                data = JsonConvert.DeserializeObject<List<DataModel>>(dataList);
-            }
-            
-            dataList = JsonConvert.SerializeObject(data);
-            HttpContext.Session.SetString("dataList", dataList);
+            var dataResponse = clienteHTTP.Get<DataModel>("data/getrisk");
+
+            List<DataModel> data = JsonConvert.DeserializeObject<List<DataModel>>(dataResponse);
+
             return View(data);
         }
 

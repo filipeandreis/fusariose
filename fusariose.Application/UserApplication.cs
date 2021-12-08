@@ -1,4 +1,7 @@
-﻿using fusariose.Application.DTO;
+﻿using fusariose.Application.Adapter;
+using fusariose.Application.DTO;
+using fusariose.Domain.Entidades;
+using fusariose.Domain.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +12,46 @@ namespace fusariose.Application
 {
     public class UserApplication
     {
-        public UserDTO Get(Guid idUser)
+        private IUserRepository userRepository;
+
+        public UserApplication(IUserRepository userRepository)
         {
-            throw new NotImplementedException();
+            this.userRepository = userRepository;
+        }
+
+        public UserDTO Get(string username)
+        {
+            var user = userRepository.Get(username);
+
+            return UserAdapter.ToUserDTO(user);
         }
 
         public List<UserDTO> GetAll()
         {
-            throw new NotImplementedException();
+            List<User> users = userRepository.GetAll();
+
+            List<UserDTO> userDTO = new();
+
+            foreach (var elem in users)
+            {
+                userDTO.Add(UserAdapter.ToUserDTO(elem));
+            }
+
+            return userDTO;
         }
 
         public Guid Add(UserDTO user)
         {
-            throw new NotImplementedException();
+            var userModel = new User()
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Password = user.Password
+            };
+
+            var userId = userRepository.Add(userModel);
+
+            return userId;
         }
         public Guid Change(UserDTO user)
         {

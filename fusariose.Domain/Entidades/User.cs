@@ -8,13 +8,15 @@ namespace fusariose.Domain.Entidades
 {
     public class User
     {
+        public Guid Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
 
         public User()
         {
-            Username = "fulano.de.tal";
-            Password = "jhk34g6j363j5h3";
+            Id = new Guid();
+            Username = "";
+            Password = "";
         }
     }
 }

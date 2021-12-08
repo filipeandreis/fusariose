@@ -14,8 +14,10 @@ C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\fusa
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\fusariose_api.dll
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\ref\fusariose_api.dll
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\fusariose_api.pdb
+C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\HTTPRequest.dll
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\Humanizer.dll
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\LocalStorage.dll
+C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\System.Net.Http.Formatting.dll
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll
@@ -33,7 +35,9 @@ C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\Micr
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\Npgsql.dll
+C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\RestSharp.dll
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Filipe\Documents\Projetos\fusariose\fusariose_api\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll

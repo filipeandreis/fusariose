@@ -80,7 +80,7 @@ namespace fusariose_api.Controllers
         }
 
         [HttpGet]
-        [Route("api/[controller]")]
+        [Route("api/[controller]/Get")]
         public IActionResult Get()
         {
             var allData = dataApplication.GetAll();
@@ -101,6 +101,76 @@ namespace fusariose_api.Controllers
             }
 
             return Ok(listData);
+        }
+
+
+        [HttpGet]
+        [Route("api/[controller]/GetRisk")]
+        public IActionResult GetRisk()
+        {
+            var allData = dataApplication.GetAllWithRisk();
+
+            List<DataModel> listData = new();
+
+            foreach (var dataDTO in allData)
+            {
+                listData.Add(new DataModel()
+                {
+                    Id = dataDTO.Id,
+                    Temperature = dataDTO.Temperature,
+                    Rain = dataDTO.Rain,
+                    Humidity = dataDTO.Humidity,
+                    Date = dataDTO.Date,
+                    Risk = dataDTO.Risk
+                });
+            }
+
+            return Ok(listData);
+        }
+
+        [HttpPost]
+        [Route("api/[controller]/GetFilter/{filter}")]
+        public IActionResult GetFilter([FromRoute] string filter, [FromBody] YearModel year)
+        {
+            List<DataDTO> data = new();
+            List<MonthDataDTO> monthData = new();
+
+            if (filter.Equals("month"))
+            {
+                monthData = dataApplication.GetAllMonth();
+            }
+            else if (filter.Equals("year"))
+            {
+                data = dataApplication.GetAllYear(Int32.Parse(year.year));
+            }
+            else
+            {
+                data = dataApplication.GetAllDay();
+            }
+
+            List<DataModel> listData = new();
+
+            foreach (var dataDTO in data)
+            {
+                listData.Add(new DataModel()
+                {
+                    Id = dataDTO.Id,
+                    Temperature = dataDTO.Temperature,
+                    Rain = dataDTO.Rain,
+                    Humidity = dataDTO.Humidity,
+                    Date = dataDTO.Date,
+                    Risk = dataDTO.Risk
+                });
+            }
+
+            if(monthData.Count > 0)
+            {
+                return Ok(monthData);
+            }
+            else
+            {
+                return Ok(listData);
+            }
         }
 
         [HttpPost]

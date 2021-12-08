@@ -1,4 +1,5 @@
-﻿using fusariose.Models;
+﻿using fusariose.ClientHttp;
+using fusariose.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -11,58 +12,44 @@ namespace fusariose.Controllers
 {
     public class UserController : Controller
     {
+        [HttpGet]
         [Route("/admin/users")]
         public IActionResult Index()
         {
-            List<UserModel> data = new();
+            APIHttpClient clienteHTTP = new();
 
-            string dataList = HttpContext.Session.GetString("users");
-            if (string.IsNullOrEmpty(dataList))
-            {
-                data = MockFactory.MockFactory.CreateAdminUser();
-            }
-            else
-            {
-                data = JsonConvert.DeserializeObject<List<UserModel>>(dataList);
-            }
+            var users = clienteHTTP.Get<UserModel>("User/GetAll");
 
-            dataList = JsonConvert.SerializeObject(data);
-            HttpContext.Session.SetString("users", dataList);
+            var data = JsonConvert.DeserializeObject<List<UserModel>>(users);
 
             return View(data);
         }
 
+        [HttpGet]
         [Route("/admin/new-user")]
         public IActionResult Store()
         {
             ViewBag.User = new UserModel();
-
+            
             return View("Formulario");
         }
 
         [HttpPost]
         public bool Search(string user)
         {
-            string users = HttpContext.Session.GetString("users");
+            APIHttpClient clienteHTTP = new();
 
-            List<UserModel> usersList = JsonConvert.DeserializeObject<List<UserModel>>(users);
+            var userExist = clienteHTTP.Get<UserModel>("User/Get/" + user);
 
-            if (string.IsNullOrEmpty(user))
+            var data = JsonConvert.DeserializeObject<UserModel>(userExist);
+
+            if (String.IsNullOrEmpty(data.Username))
             {
                 return false;
             }
             else
             {
-                var produto = usersList.Where(p => p.Username.Equals(user)).ToList<UserModel>();
-
-                if (produto.Count > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
         }
 
@@ -80,30 +67,11 @@ namespace fusariose.Controllers
 
             if (ModelState.IsValid)
             {
-                string users = HttpContext.Session.GetString("users");
+                APIHttpClient clienteHTTP = new();
 
-                if (users != null)
-                {
-                    List<UserModel> info = JsonConvert.DeserializeObject<List<UserModel>>(users);
+                clienteHTTP.Post<UserModel>("User/Store", user);
 
-                    info.Add(user);
-
-                    users = JsonConvert.SerializeObject(info);
-                    HttpContext.Session.SetString("users", users);
-
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    List<UserModel> info = new();
-
-                    info.Add(user);
-
-                    users = JsonConvert.SerializeObject(info);
-                    HttpContext.Session.SetString("users", users);
-
-                    return RedirectToAction("Index");
-                }
+                return RedirectToAction("Index");
             }
             else
             {

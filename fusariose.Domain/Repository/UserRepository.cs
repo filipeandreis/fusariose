@@ -10,8 +10,8 @@ namespace fusariose.Domain.Repository
     public interface IUserRepository
     {
         public List<User> GetAll();
-        public User Get(Guid username);
-        public void Add(User user);
+        public User Get(string username);
+        public Guid Add(User user);
         public void Change(User user);
         public void Delete(Guid username);
     }

@@ -106,6 +106,141 @@ namespace fusariose.Repository
             return listData;
         }
 
+        public List<Data> GetAllWithRisk()
+        {
+            List<Data> listData = new();
+
+            using (NpgsqlConnection conn = new(strConexao))
+            {
+                conn.Open();
+
+                NpgsqlCommand query = new()
+                {
+                    Connection = conn,
+
+                    CommandText = "SELECT * FROM data WHERE RISK IS TRUE;"
+                };
+
+                NpgsqlDataReader reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listData.Add(
+                        new Data()
+                        {
+                            Id = Guid.Parse(reader["id"].ToString()),
+                            Temperature = Int32.Parse(reader["temperature"].ToString()),
+                            Rain = Int32.Parse(reader["rain"].ToString()),
+                            Humidity = Int32.Parse(reader["humidity"].ToString()),
+                            Date = Convert.ToDateTime(reader["date"].ToString()),
+                            Risk = reader["risk"].ToString()
+                        }); ;
+                }
+            }
+            return listData;
+        }
+
+        public List<MonthData> GetAllMonth()
+        {
+            List<MonthData> listData = new();
+
+            using (NpgsqlConnection conn = new(strConexao))
+            {
+                conn.Open();
+
+                NpgsqlCommand query = new()
+                {
+                    Connection = conn,
+
+                    CommandText = "WITH PRAGAS (MES, MEDIA_TEMPERATURA, MEDIA_CHUVA, MEDIA_UMIDADE) AS ( SELECT DISTINCT EXTRACT(MONTH FROM A.DATE) AS MES, (( SELECT SUM(TEMPERATURE) FROM DATA A1 WHERE EXTRACT(MONTH FROM A1.DATE) = EXTRACT(MONTH FROM A.DATE) ) / ( SELECT COUNT(*) FROM DATA A1 WHERE EXTRACT(MONTH FROM A1.DATE) = EXTRACT(MONTH FROM A.DATE) )) AS MEDIA_TEMPERATURA, (( SELECT SUM(RAIN) FROM DATA A1 WHERE EXTRACT(MONTH FROM A1.DATE) = EXTRACT(MONTH FROM A.DATE) ) / ( SELECT COUNT(*) FROM DATA A1 WHERE EXTRACT(MONTH FROM A1.DATE) = EXTRACT(MONTH FROM A.DATE) )) AS MEDIA_CHUVA, (( SELECT SUM(HUMIDITY) FROM DATA A1 WHERE EXTRACT(MONTH FROM A1.DATE) = EXTRACT(MONTH FROM A.DATE) ) / ( SELECT COUNT(*) FROM DATA A1 WHERE EXTRACT(MONTH FROM A1.DATE) = EXTRACT(MONTH FROM A.DATE) )) AS MEDIA_UMIDADE FROM DATA A /*WHERE EXTRACT(MONTH FROM A.DATE) = :MES*/ ) SELECT MES, MEDIA_TEMPERATURA, MEDIA_CHUVA, MEDIA_UMIDADE, CASE WHEN MEDIA_TEMPERATURA < 24 AND MEDIA_CHUVA > 0 AND MEDIA_UMIDADE > 70 THEN TRUE ELSE FALSE END AS RISK FROM PRAGAS;"
+                };
+
+                NpgsqlDataReader reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listData.Add(
+                        new MonthData()
+                        {
+                            Month = reader["month"].ToString(),
+                            Temperature = Int32.Parse(reader["temperature"].ToString()),
+                            Rain = Int32.Parse(reader["rain"].ToString()),
+                            Humidity = Int32.Parse(reader["humidity"].ToString()),
+                            Risk = reader["risk"].ToString()
+                        }); ;
+                }
+            }
+            return listData;
+        }
+
+        public List<Data> GetAllDay()
+        {
+            List<Data> listData = new();
+
+            using (NpgsqlConnection conn = new(strConexao))
+            {
+                conn.Open();
+
+                NpgsqlCommand query = new()
+                {
+                    Connection = conn,
+
+                    CommandText = "SELECT * FROM data WHERE RISK IS TRUE;"
+                };
+
+                NpgsqlDataReader reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listData.Add(
+                        new Data()
+                        {
+                            Id = Guid.Parse(reader["id"].ToString()),
+                            Temperature = Int32.Parse(reader["temperature"].ToString()),
+                            Rain = Int32.Parse(reader["rain"].ToString()),
+                            Humidity = Int32.Parse(reader["humidity"].ToString()),
+                            Date = Convert.ToDateTime(reader["date"].ToString()),
+                            Risk = reader["risk"].ToString()
+                        }); ;
+                }
+            }
+            return listData;
+        }
+
+        public List<Data> GetAllYear(int year)
+        {
+            List<Data> listData = new();
+
+            using (NpgsqlConnection conn = new(strConexao))
+            {
+                conn.Open();
+
+                NpgsqlCommand query = new()
+                {
+                    Connection = conn,
+
+                    CommandText = "WITH PRAGAS (temperature, rain, humidity) AS ( SELECT DISTINCT CAST((( SELECT CAST(SUM(TEMPERATURE) AS NUMERIC(15,2)) FROM DATA A1 WHERE EXTRACT(YEAR FROM A1.DATE) = @year ) / ( SELECT CAST(COUNT(*) AS NUMERIC(15,2)) FROM DATA A1 WHERE EXTRACT(YEAR FROM A1.DATE) = @year )) AS NUMERIC(15,2)) AS temperature, CAST((( SELECT CAST(SUM(RAIN) AS NUMERIC(15,2)) FROM DATA A1 WHERE EXTRACT(YEAR FROM A1.DATE) = @year ) / ( SELECT CAST(COUNT(*) AS NUMERIC(15,2)) FROM DATA A1 WHERE EXTRACT(YEAR FROM A1.DATE) = @year )) AS NUMERIC(15,2)) AS rain, CAST((( SELECT CAST(SUM(HUMIDITY) AS NUMERIC(15,2)) FROM DATA A1 WHERE EXTRACT(YEAR FROM A1.DATE) = @year ) / ( SELECT CAST(COUNT(*) AS NUMERIC(15,2)) FROM DATA A1 WHERE EXTRACT(YEAR FROM A1.DATE) = @year )) AS NUMERIC(15,2)) AS humidity FROM DATA A WHERE EXTRACT(YEAR FROM A.DATE) = @year ) SELECT temperature, rain, humidity, CASE WHEN temperature < 24 AND rain > 0 AND humidity > 70 THEN TRUE ELSE FALSE END AS RISK FROM PRAGAS;"
+                };
+
+                query.Parameters.AddWithValue("year", year);
+
+                NpgsqlDataReader reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    listData.Add(
+                        new Data()
+                        {
+                            Temperature = Int32.Parse(reader["temperature"].ToString()),
+                            Rain = Int32.Parse(reader["rain"].ToString()),
+                            Humidity = Int32.Parse(reader["humidity"].ToString()),
+                            Risk = reader["risk"].ToString()
+                        }); ;
+                }
+            }
+            return listData;
+        }
+
         public List<Data> GetAllUnanalyzed()
         {
             List<Data> listDataUnanalyzed = new();

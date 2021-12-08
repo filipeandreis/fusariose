@@ -38,6 +38,63 @@ namespace fusariose.Application
 
             return dataDTO;
         }
+        
+
+        public List<DataDTO> GetAllWithRisk()
+        {
+            List<Data> data = dataRepository.GetAllWithRisk();
+
+            List<DataDTO> dataDTO = new();
+
+            foreach (var elem in data)
+            {
+                dataDTO.Add(DataAdapter.ToDataDTO(elem));
+            }
+
+            return dataDTO;
+        }
+
+        public List<MonthDataDTO> GetAllMonth()
+        {
+            List<MonthData> data = dataRepository.GetAllMonth();
+
+            List<MonthDataDTO> dataDTO = new();
+
+            foreach (var elem in data)
+            {
+                dataDTO.Add(MonthDataAdapter.ToDataDTO(elem));
+            }
+
+            return dataDTO;
+        }
+
+        public List<DataDTO> GetAllYear(int year)
+        {
+            List<Data> data = dataRepository.GetAllYear(year);
+
+            List<DataDTO> dataDTO = new();
+
+            foreach (var elem in data)
+            {
+                dataDTO.Add(DataAdapter.ToDataDTO(elem));
+            }
+
+            return dataDTO;
+        }
+
+        public List<DataDTO> GetAllDay()
+        {
+            List<Data> data = dataRepository.GetAllDay();
+
+            List<DataDTO> dataDTO = new();
+
+            foreach (var elem in data)
+            {
+                dataDTO.Add(DataAdapter.ToDataDTO(elem));
+            }
+
+            return dataDTO;
+        }
 
         public List<DataDTO> GetAllUnanalyzed()
         {

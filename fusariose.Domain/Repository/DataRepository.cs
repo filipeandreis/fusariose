@@ -1,9 +1,6 @@
 ﻿using fusariose.Domain.Entidades;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace fusariose.Domain.Repository
 {
@@ -12,6 +9,10 @@ namespace fusariose.Domain.Repository
         public List<Data> GetAll();
         public Data Get(Guid idData);
         public List<Data> GetAllUnanalyzed();
+        public List<Data> GetAllWithRisk();
+        public List<MonthData> GetAllMonth();
+        public List<Data> GetAllYear(int year);
+        public List<Data> GetAllDay();
         public void ConvertData();
         public void Add(Data data);
         public void Change(Data data);

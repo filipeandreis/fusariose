@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace fusariose.Models
 {
-    public class MonthDataModel
+    public class DataModel
     {
         public Guid Id { get; set; }
         [Required(ErrorMessage ="Campo obrigatório")]
@@ -13,7 +13,7 @@ namespace fusariose.Models
         [Required(ErrorMessage = "Campo obrigatório")]
         public int Humidity { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
-        public string Month { get; set; }
+        public DateTime Date { get; set; }
         public string Risk { get; set; }
     }
 }
